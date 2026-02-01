@@ -18,3 +18,6 @@ bindkey -M viins 'jj' vi-cmd-mode
 
 ## Aliases
 eval $(thefuck --alias)
+
+## Environment variables
+export GIT_EDITOR=nvim
