@@ -17,8 +17,8 @@ require('markview').setup({
 	preview = {
 		enable = true,
 		enable_hybrid_mode = true,
-		modes = { "R", "i", "n", "no", "c" },
-		hybrid_modes = { "R", "i", "n", "no", "c" },
+		modes = { "v", "V", "R", "i", "n", "no", "c" },
+		hybrid_modes = { "v", "V", "R", "i", "n", "no", "c" },
 	}
 })
 
