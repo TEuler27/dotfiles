@@ -8,6 +8,7 @@ vim.call('plug#begin')
 Plug('nvim-mini/mini.icons')
 Plug('nvim-treesitter/nvim-treesitter')
 Plug('OXY2DEV/markview.nvim')
+Plug('EdenEast/nightfox.nvim') 
 
 vim.call('plug#end')
 
@@ -21,4 +22,5 @@ require('markview').setup({
 		hybrid_modes = { "v", "V", "R", "i", "n", "no", "c" },
 	}
 })
+vim.cmd("colorscheme nordfox")
 
