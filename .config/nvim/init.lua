@@ -3,6 +3,7 @@ vim.opt.shiftwidth=4
 vim.opt.softtabstop=-1
 vim.opt.expandtab=true
 vim.opt.number=true
+vim.opt.cursorline=true
 
 -- Key Remapping
 vim.keymap.set('i', 'jj', '<Esc>', {})
