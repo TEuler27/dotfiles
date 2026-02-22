@@ -1,3 +1,9 @@
+-- General settings
+vim.opt.shiftwidth=4
+vim.opt.softtabstop=-1
+vim.opt.expandtab=true
+vim.opt.number=true
+
 -- Key Remapping
 vim.keymap.set('i', 'jj', '<Esc>', {})
 
@@ -16,15 +22,15 @@ vim.call('plug#end')
 -- Plugin loading with settings
 require('mini.icons').setup()
 require('markview').setup({
-	preview = {
-		enable = true,
-		enable_hybrid_mode = true,
-		modes = { "v", "V", "R", "i", "n", "no", "c" },
-		hybrid_modes = { "v", "V", "R", "i", "n", "no", "c" },
-	}
+    preview = {
+        enable = true,
+        enable_hybrid_mode = true,
+        modes = { "v", "V", "R", "i", "n", "no", "c" },
+        hybrid_modes = { "v", "V", "R", "i", "n", "no", "c" },
+    }
 })
 require('nvim-treesitter.config').setup({
-	ignore_install = { "latex" }
+    ignore_install = { "latex" }
 })
 vim.cmd("colorscheme nordfox")
 
