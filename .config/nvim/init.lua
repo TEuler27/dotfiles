@@ -16,6 +16,7 @@ Plug('nvim-treesitter/nvim-treesitter')
 Plug('OXY2DEV/markview.nvim')
 Plug('lervag/vimtex')
 Plug('EdenEast/nightfox.nvim') 
+Plug('L3MON4D3/LuaSnip', {['do'] = 'make install_jsregexp'}) 
 
 vim.call('plug#end')
 
@@ -33,6 +34,28 @@ require('nvim-treesitter.config').setup({
     ignore_install = { "latex" }
 })
 vim.cmd("colorscheme nordfox")
+
+-- Luasnip
+vim.g.tex_flavor = "latex" 
+local ls = require("luasnip")
+ls.config.set_config({
+    enable_autosnippets = true,
+    store_selection_keys = "<Tab>",
+    update_events = 'TextChanged,TextChangedI',
+})
+vim.keymap.set(
+    {"i", "s"},
+    "<Tab>",
+    function()
+        if ls.expand_or_jumpable() then 
+            vim.schedule(function() ls.expand_or_jump() end)
+        else 
+            return "<Tab>" 
+        end 
+    end, 
+    {silent = true, expr = true})
+vim.keymap.set({"i", "s"}, "<S-Tab>", function() ls.jump(-1) end, {silent = true})
+require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnip/"})
 
 -- VimTex setting
 vim.g.vimtex_view_method = 'zathura'
