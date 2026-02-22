@@ -48,3 +48,15 @@ vim.keymap.set('o', 'am', '<Plug>(vimtex-a$)', {})
 vim.keymap.set('o', 'im', '<Plug>(vimtex-i$)', {})
 vim.keymap.set('o', 'ai', '<Plug>(vimtex-am)', {})
 vim.keymap.set('o', 'ii', '<Plug>(vimtex-im)', {})
+vim.keymap.set('n', 'swe', '<Plug>(vimtex-env-surround-line)', {})
+vim.keymap.set('x', 'swe', '<Plug>(vimtex-env-surround-visual)', {})
+vim.g.vimtex_syntax_conceal_disable=true
+vim.g.vimtex_indent_on_ampersands=false
+vim.g.vimtex_env_toggle_math_map = {
+    ["$"]="equation",
+    ["equation"]="align",
+}
+vim.g.vimtex_delim_toggle_mod_list = {
+    {"\\Big", "\\Big"},
+    {"\\Bigg", "\\Bigg"},
+}
