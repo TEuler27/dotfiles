@@ -13,6 +13,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
 Plug('nvim-mini/mini.icons')
+Plug('nvim-mini/mini-git')
 Plug('nvim-treesitter/nvim-treesitter')
 Plug('OXY2DEV/markview.nvim')
 Plug('lervag/vimtex')
@@ -20,11 +21,18 @@ Plug('EdenEast/nightfox.nvim')
 Plug('L3MON4D3/LuaSnip', {['do'] = 'make install_jsregexp'}) 
 Plug("ingur/floatty.nvim")
 Plug("nvim-lualine/lualine.nvim")
+Plug('LuxVim/nvim-luxmotion')
 
 vim.call('plug#end')
 
 -- Plugin loading with settings
 require("lualine").setup()
+require("luxmotion").setup({
+    cursor = {
+        duration = 80,
+        easing = "linear",
+    },
+})
 require('mini.icons').setup()
 local term = require("floatty").setup()
 vim.keymap.set('n', '<leader>t', function() term.toggle() end)
