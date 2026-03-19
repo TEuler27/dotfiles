@@ -18,6 +18,7 @@ Plug('OXY2DEV/markview.nvim')
 Plug('lervag/vimtex')
 Plug('EdenEast/nightfox.nvim') 
 Plug('L3MON4D3/LuaSnip', {['do'] = 'make install_jsregexp'}) 
+Plug("ingur/floatty.nvim")
 Plug("nvim-lualine/lualine.nvim")
 
 vim.call('plug#end')
@@ -25,6 +26,10 @@ vim.call('plug#end')
 -- Plugin loading with settings
 require("lualine").setup()
 require('mini.icons').setup()
+local term = require("floatty").setup()
+vim.keymap.set('n', '<leader>t', function() term.toggle() end)
+vim.keymap.set('t', '<leader>q', function() term.toggle() end)
+
 require('markview').setup({
     preview = {
         enable = true,
