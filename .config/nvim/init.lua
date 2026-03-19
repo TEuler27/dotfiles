@@ -18,10 +18,12 @@ Plug('OXY2DEV/markview.nvim')
 Plug('lervag/vimtex')
 Plug('EdenEast/nightfox.nvim') 
 Plug('L3MON4D3/LuaSnip', {['do'] = 'make install_jsregexp'}) 
+Plug("nvim-lualine/lualine.nvim")
 
 vim.call('plug#end')
 
 -- Plugin loading with settings
+require("lualine").setup()
 require('mini.icons').setup()
 require('markview').setup({
     preview = {
