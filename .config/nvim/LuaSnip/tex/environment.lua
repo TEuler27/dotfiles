@@ -4,8 +4,8 @@ return {
     -- New frame environment
     s(
         {
-            trig="frm",
-            dscr="Expands 'frm' into a new frame environment",
+            trig="fra",
+            dscr="Expands 'fra' into a new frame environment",
             snippetType="autosnippet",
             condition=line_begin
         },
@@ -15,14 +15,14 @@ return {
                     <>
                 \end{frame}
             ]],
-            { i(1, "Frame content here") }
+            { i(1) }
         )
     ),
     -- New equation environment
     s(
         {
-            trig="eq",
-            dscr="Expands 'eq' into a new equation environment",
+            trig="equ",
+            dscr="Expands 'equ' into a new equation environment",
             snippetType="autosnippet",
             condition=line_begin
         },
@@ -32,14 +32,14 @@ return {
                     <>
                 \end{equation}
             ]],
-            { i(1, "Math here") }
+            { i(1) }
         )
     ),
     -- New align environment
     s(
         {
-            trig="al",
-            dscr="Expands 'al' into a new align environment",
+            trig="ali",
+            dscr="Expands 'ali' into a new align environment",
             snippetType="autosnippet",
             condition=line_begin
         },
@@ -49,7 +49,7 @@ return {
                     <>
                 \end{align}
             ]],
-            { i(1, "Math here") }
+            { i(1) }
         )
     ),
     -- New cases environment
@@ -66,14 +66,14 @@ return {
                     <>
                 \end{cases}
             ]],
-            { i(1, "Math here") }
+            { i(1) }
         )
     ),
     -- New pmatrix environment
     s(
         {
-            trig="pmt",
-            dscr="Expands 'pmt' into a new pmatrix environment",
+            trig="pma",
+            dscr="Expands 'pma' into a new pmatrix environment",
             snippetType="autosnippet",
             condition=line_begin
         },
@@ -89,8 +89,8 @@ return {
     -- New bmatrix environment
     s(
         {
-            trig="bmt",
-            dscr="Expands 'bmt' into a new bmatrix environment",
+            trig="bma",
+            dscr="Expands 'bma' into a new bmatrix environment",
             snippetType="autosnippet",
             condition=line_begin
         },
@@ -123,15 +123,15 @@ return {
     -- New itemize environment
     s(
         {
-            trig="it",
-            dscr="Expands 'it' into a new itemize environment",
+            trig="ite",
+            dscr="Expands 'ite' into a new itemize environment",
             snippetType="autosnippet",
             condition=line_begin
         },
         fmta(
             [[
                 \begin{itemize}
-                    <>
+                    \\item <>
                 \end{itemize}
             ]],
             { i(1) }
@@ -140,15 +140,15 @@ return {
     -- New enumerate environment
     s(
         {
-            trig="en",
-            dscr="Expands 'en' into a new enumerate environment",
+            trig="enu",
+            dscr="Expands 'enu' into a new enumerate environment",
             snippetType="autosnippet",
             condition=line_begin
         },
         fmta(
             [[
                 \begin{enumerate}
-                    <>
+                    \\item <>
                 \end{enumerate}
             ]],
             { i(1) }
