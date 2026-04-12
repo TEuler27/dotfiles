@@ -2,6 +2,14 @@ local in_mathzone = function()
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
+local get_visual = function(args, parent)
+    if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+        return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+    else  
+        return sn(nil, i(1))
+    end
+end
+
 return {
     -- Insert calliigraphic math
     s(
@@ -31,13 +39,14 @@ return {
             { d(1, get_visual) }
         )
     ),
-    -- Insert boldface
+    -- Insert boldface math 
     s(
         {
             trig="bf",
-            dscr="Expands 'bf' into a textbf command",
+            dscr="Expands 'bf' into a mathbf command",
             wordTrig=false,
             snippetType="autosnippet",
+            condition=in_mathzone,
         },
         fmta(
             "\\mathbf{<>}",
@@ -47,8 +56,21 @@ return {
     -- Insert boldface
     s(
         {
-            trig="it",
-            dscr="Expands 'it' into a textit command",
+            trig="bf",
+            dscr="Expands 'bf' into a mathbf command",
+            wordTrig=false,
+            snippetType="autosnippet",
+        },
+        fmta(
+            "\\textbf{<>}",
+            { d(1, get_visual) }
+        )
+    ),
+    -- Insert italic
+    s(
+        {
+            trig="itt",
+            dscr="Expands 'itt' into a textit command",
             snippetType="autosnippet",
         },
         fmta(
@@ -67,7 +89,7 @@ return {
         },
         fmta(
             "\\text{<>}",
-            { i(1) }
+            { d(1, get_visual) }
         )
     ),
 }
