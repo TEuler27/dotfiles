@@ -53,7 +53,7 @@ return {
             { d(1, get_visual) }
         )
     ),
-    -- Insert boldface
+    -- Insert italic
     s(
         {
             trig="bf",
