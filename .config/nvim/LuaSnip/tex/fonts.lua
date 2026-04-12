@@ -53,11 +53,11 @@ return {
             { d(1, get_visual) }
         )
     ),
-    -- Insert italic
+    -- Insert boldface
     s(
         {
             trig="bf",
-            dscr="Expands 'bf' into a mathbf command",
+            dscr="Expands 'bf' into a textbf command",
             wordTrig=false,
             snippetType="autosnippet",
         },
