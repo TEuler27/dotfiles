@@ -225,7 +225,7 @@ return {
     -- Insert set
     s(
         {
-            trig="set([^m])",
+            trig="([^b])set([^m])",
             dscr="Expands 'set' into a set of curly parentheses",
             wordTrig=false,
             regTrig=true,
@@ -233,8 +233,8 @@ return {
             condition=in_mathzone,
         },
         fmta(
-            "\\{<><>\\}",
-            { f( function(_, snip) return snip.captures[1] end ), i(1) }
+            "<>\\{<><>\\}",
+            { f( function(_, snip) return snip.captures[1] end ), f( function(_, snip) return snip.captures[2] end ), i(3) }
         )
     ),
     -- Insert norm 
@@ -259,6 +259,7 @@ return {
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
+            priority=1001
         },
         fmta(
             "\\sum_{<>}",
@@ -273,6 +274,7 @@ return {
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
+            priority=1002
         },
         fmta(
             "\\sum_{<>}^{<>}",

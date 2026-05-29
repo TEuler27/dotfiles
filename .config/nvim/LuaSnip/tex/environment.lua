@@ -148,7 +148,7 @@ return {
         fmta(
             [[
                 \begin{enumerate}
-                    \\item <>
+                    \item <>
                 \end{enumerate}
             ]],
             { i(1) }

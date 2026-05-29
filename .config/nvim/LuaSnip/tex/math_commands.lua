@@ -56,7 +56,7 @@ return {
     -- Insert infty command
     s(
         {
-            trig="inf",
+            trig="\\inf",
             dscr="Expands 'inf' into a infty command",
             wordTrig=false,
             snippetType="autosnippet",
@@ -267,21 +267,6 @@ return {
             {}
         )
     ),
-    -- Insert cdots command
-    s(
-        {
-            trig="cdo",
-            dscr="Expands 'cdo' into a cdots command",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-            priority=1001,
-        },
-        fmta(
-            "\\cdots",
-            {}
-        )
-    ),
     -- Insert land command
     s(
         {
@@ -310,17 +295,17 @@ return {
             {}
         )
     ),
-    -- Insert sym command
+    -- Insert sim command
     s(
         {
-            trig="sym",
-            dscr="Expands 'sym' into a sym command",
+            trig="sim",
+            dscr="Expands 'sim' into a sim command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
         },
         fmta(
-            "\\sym",
+            "\\sim",
             {}
         )
     ),
@@ -383,8 +368,8 @@ return {
     -- Insert qquad command
     s(
         {
-            trig="   ",
-            dscr="Expands '   ' (three whitespaces) into a quad command",
+            trig="\\quad  ",
+            dscr="Expands '    ' (four whitespaces) into a quad command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,

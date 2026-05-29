@@ -6,7 +6,7 @@ return{
     -- Greek letters
     s(
         {
-            trig="g([%a]+)",
+            trig="gr([%a]+)",
             dscr="Auto expand greek letters",
             wordTrig=false,
             regTrig=true,
@@ -56,7 +56,7 @@ return{
                         if letter ~= nil then
                             return "\\" .. table[snip.captures[1]]
                         else
-                            return "g" .. snip.captures[1]
+                            return "gr" .. snip.captures[1]
                         end
                     end,
                     {}
