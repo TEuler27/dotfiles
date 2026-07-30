@@ -28,8 +28,8 @@ return {
     -- Insert times command
     s(
         {
-            trig="tim",
-            dscr="Expands 'tim' into a times command",
+            trig="times",
+            dscr="Expands 'times' into a times command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -42,8 +42,8 @@ return {
     -- Insert cdot command
     s(
         {
-            trig="cdo",
-            dscr="Expands 'cdo' into a cdot command",
+            trig="cdot",
+            dscr="Expands 'cdot' into a cdot command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -56,8 +56,8 @@ return {
     -- Insert infty command
     s(
         {
-            trig="\\inf",
-            dscr="Expands 'inf' into a infty command",
+            trig="\\infty",
+            dscr="Expands 'infty' into a infty command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -158,8 +158,8 @@ return {
     -- Insert partial command
     s(
         {
-            trig="par",
-            dscr="Expands 'par' into a partial command",
+            trig="partial",
+            dscr="Expands 'partial' into a partial command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -228,8 +228,8 @@ return {
     -- Insert widetilde command
     s(
         {
-            trig="wid",
-            dscr="Expands 'wid' into a widetilde command",
+            trig="wide",
+            dscr="Expands 'wide' into a widetilde command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -242,8 +242,8 @@ return {
     -- Insert nabla command
     s(
         {
-            trig="nab",
-            dscr="Expands 'nab' into a nabla command",
+            trig="nabla",
+            dscr="Expands 'nabla' into a nabla command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -270,8 +270,8 @@ return {
     -- Insert land command
     s(
         {
-            trig="lan",
-            dscr="Expands 'lan' into a land command",
+            trig="land",
+            dscr="Expands 'land' into a land command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -340,8 +340,8 @@ return {
     -- Insert equiv command
     s(
         {
-            trig="equ",
-            dscr="Expands 'equ' into a equiv command",
+            trig="equiv",
+            dscr="Expands 'equiv' into a equiv command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -361,7 +361,7 @@ return {
             condition=in_mathzone,
         },
         fmta(
-            " \\quad ",
+            "\\quad ",
             {}
         )
     ),
@@ -382,8 +382,8 @@ return {
     -- Insert colon command
     s(
         {
-            trig="col",
-            dscr="Expands 'col' into a colon command",
+            trig="colon",
+            dscr="Expands 'colon' into a colon command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -410,8 +410,8 @@ return {
     -- Insert setminus command
     s(
         {
-            trig="setm",
-            dscr="Expands 'setm' into a setminus command",
+            trig="setminus",
+            dscr="Expands 'setminus' into a setminus command",
             snippetType="autosnippet",
             condition=in_mathzone,
         },
@@ -451,8 +451,8 @@ return {
     -- Insert circ command
     s(
         {
-            trig="cir",
-            dscr="Expands 'cir' into a circ command",
+            trig="circ",
+            dscr="Expands 'circ' into a circ command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -492,8 +492,8 @@ return {
     -- Insert mapsto command
     s(
         {
-            trig="mto",
-            dscr="Expands 'mto' into a mapsto command",
+            trig="mapsto",
+            dscr="Expands 'mapsto' into a mapsto command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -507,8 +507,8 @@ return {
     -- Insert weakto command
     s(
         {
-            trig="wto",
-            dscr="Expands 'wto' into a weakto command",
+            trig="weakto",
+            dscr="Expands 'weakto' into a weakto command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -522,8 +522,8 @@ return {
     -- Insert weakstarto command
     s(
         {
-            trig="wsto",
-            dscr="Expands 'wsto' into a weakstarto command",
+            trig="weakstar",
+            dscr="Expands 'weakstar' into a weakstarto command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -537,8 +537,8 @@ return {
     -- Insert sst command
     s(
         {
-            trig="sub",
-            dscr="Expands 'sub' into a subset command",
+            trig="subset",
+            dscr="Expands 'subset' into a subset command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -551,8 +551,8 @@ return {
     -- Insert otimes command
     s(
         {
-            trig="oti",
-            dscr="Expands 'oti' into a oti command",
+            trig="otimes",
+            dscr="Expands 'otimes' into a oti command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
@@ -579,8 +579,8 @@ return {
     -- Insert overline command
     s(
         {
-            trig="ove",
-            dscr="Expands 'ove' into a overline command",
+            trig="over",
+            dscr="Expands 'over' into a overline command",
             wordTrig=false,
             snippetType="autosnippet",
             condition=in_mathzone,
