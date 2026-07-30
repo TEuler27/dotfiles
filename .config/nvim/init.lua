@@ -27,7 +27,7 @@ vim.call('plug#end')
 
 -- Plugin loading with settings
 require("lualine").setup()
-require("luxmotion").setup({
+require("whisk").setup({
     cursor = {
         duration = 80,
         easing = "linear",
