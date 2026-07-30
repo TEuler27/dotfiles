@@ -410,15 +410,26 @@ return {
     -- Insert setminus command
     s(
         {
-            trig="setminus",
+            trig="\\{ minus",
             dscr="Expands 'setminus' into a setminus command",
             snippetType="autosnippet",
             condition=in_mathzone,
         },
         fmta(
-            "\\setminus",
-            {}
-        )
+            "\\setminus<>",
+            { i(1) }
+        ),
+        {
+            callbacks = {
+                [-1] = {
+                    [events.pre_expand] = function(_, event_args)
+                        local row = event_args.expand_pos[1] 
+                        local col = event_args.expand_pos[2]  
+                        vim.api.nvim_buf_set_text(0, row, col, row, col + 3, {})
+                    end,
+                },
+            },
+        }
     ),
     -- Insert ast command
     s(

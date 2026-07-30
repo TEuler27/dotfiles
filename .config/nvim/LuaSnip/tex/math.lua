@@ -225,7 +225,7 @@ return {
     -- Insert set
     s(
         {
-            trig="([^b])set([^m])",
+            trig="set",
             dscr="Expands 'set' into a set of curly parentheses",
             wordTrig=false,
             regTrig=true,
@@ -233,8 +233,8 @@ return {
             condition=in_mathzone,
         },
         fmta(
-            "<>\\{<><>\\}",
-            { f( function(_, snip) return snip.captures[1] end ), f( function(_, snip) return snip.captures[2] end ), i(3) }
+            "\\{ <> \\}",
+            { i(1) }
         )
     ),
     -- Insert norm 
@@ -247,7 +247,7 @@ return {
             condition=in_mathzone,
         },
         fmta(
-            "\\lVert<>\\rVert_{<>}",
+            "\\lVert <> \\rVert_{<>}",
             { i(1), i(2) }
         )
     ),
