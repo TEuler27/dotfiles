@@ -1,0 +1,9 @@
+# Files in the repo that must not be symlinked into $HOME
+\.git
+\.gitignore
+\.stow-local-ignore
+^/README.*
+^/install\.sh
+^/Claude\.md
+^/Claude outputs
+.*\.swp

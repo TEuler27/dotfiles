@@ -14,9 +14,15 @@ compinit
 # CUSTOM CONFIGURATION
 
 ## PATH
-export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux-x86_64/bin:/usr/local/texlive/2024/bin/x86_64-linux"
-export MANPATH="$MANPATH:/usr/local/texlive/2024/texmf-dist/doc/man"
-export INFOPATH="$INFOPATH:/usr/local/texlive/2024/texmf-dist/doc/info"
+export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux-x86_64/bin"
+# Newest TeX Live install in /usr/local/texlive/<year>, if any
+texlive_dir=( /usr/local/texlive/<->(N/On[1]) )
+if (( $#texlive_dir )); then
+    export PATH="$PATH:$texlive_dir/bin/x86_64-linux"
+    export MANPATH="$MANPATH:$texlive_dir/texmf-dist/doc/man"
+    export INFOPATH="$INFOPATH:$texlive_dir/texmf-dist/doc/info"
+fi
+unset texlive_dir
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ## Keybinding for vi
