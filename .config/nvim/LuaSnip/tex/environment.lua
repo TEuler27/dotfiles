@@ -1,157 +1,52 @@
-local line_begin = require("luasnip.extras.expand_conditions").line_begin
+local h = require("tex_snippet_helpers")
+local auto = h.auto
+
+-- Text environments: at the start of a line, outside math
+local text_env = { condition = h.in_text * h.line_begin }
+-- Math-only environments: anywhere in math, at the start of a word
+local math_env = { condition = h.math, wordTrig = true }
+
+local function env(name)
+  return fmta(
+    [[
+      \begin{]] .. name .. [[}
+          <>
+      \end{]] .. name .. [[}
+    ]],
+    { i(1) }
+  )
+end
 
 return {
-    -- New frame environment
-    s(
-        {
-            trig="fra",
-            dscr="Expands 'fra' into a new frame environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{frame}
-                    <>
-                \end{frame}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New equation environment
-    s(
-        {
-            trig="equ",
-            dscr="Expands 'equ' into a new equation environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{equation}
-                    <>
-                \end{equation}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New align environment
-    s(
-        {
-            trig="ali",
-            dscr="Expands 'ali' into a new align environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{align}
-                    <>
-                \end{align}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New cases environment
-    s(
-        {
-            trig="cas",
-            dscr="Expands 'cas' into a new cases environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{cases}
-                    <>
-                \end{cases}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New pmatrix environment
-    s(
-        {
-            trig="pma",
-            dscr="Expands 'pma' into a new pmatrix environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{pmatrix}
-                    <>
-                \end{pmatrix}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New bmatrix environment
-    s(
-        {
-            trig="bma",
-            dscr="Expands 'bma' into a new bmatrix environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{bmatrix}
-                    <>
-                \end{bmatrix}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New environment
-    s(
-        {
-            trig="env",
-            dscr="Expands 'env' into a new environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{<>}
-                    <>
-                \end{<>}
-            ]],
-            { i(1), i(2), rep(1) }
-        )
-    ),
-    -- New itemize environment
-    s(
-        {
-            trig="ite",
-            dscr="Expands 'ite' into a new itemize environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{itemize}
-                    \\item <>
-                \end{itemize}
-            ]],
-            { i(1) }
-        )
-    ),
-    -- New enumerate environment
-    s(
-        {
-            trig="enu",
-            dscr="Expands 'enu' into a new enumerate environment",
-            snippetType="autosnippet",
-            condition=line_begin
-        },
-        fmta(
-            [[
-                \begin{enumerate}
-                    \item <>
-                \end{enumerate}
-            ]],
-            { i(1) }
-        )
-    ),
+  auto("fra", env("frame"), text_env),
+  auto("equ", env("equation"), text_env),
+  auto("ali", env("align"), text_env),
+  auto("ite", fmta(
+    [[
+      \begin{itemize}
+          \item <>
+      \end{itemize}
+    ]],
+    { i(1) }
+  ), text_env),
+  auto("enu", fmta(
+    [[
+      \begin{enumerate}
+          \item <>
+      \end{enumerate}
+    ]],
+    { i(1) }
+  ), text_env),
+  auto("env", fmta(
+    [[
+      \begin{<>}
+          <>
+      \end{<>}
+    ]],
+    { i(1), i(2), rep(1) }
+  ), text_env),
+
+  auto("cas", env("cases"), math_env),
+  auto("pma", env("pmatrix"), math_env),
+  auto("bma", env("bmatrix"), math_env),
 }

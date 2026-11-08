@@ -1,315 +1,58 @@
-local get_visual = function(args, parent)
-    if (#parent.snippet.env.LS_SELECT_RAW > 0) then
-        return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
-    else  
-        return sn(nil, i(1))
-    end
-end
+local h = require("tex_snippet_helpers")
+local auto = h.auto
 
-local in_mathzone = function()
-  return vim.fn['vimtex#syntax#in_mathzone']() == 1
-end
- 
-return {
-    -- Insert inline math
-    s(
-        {
-            trig="mm",
-            dscr="Expands 'mm' into an inline math area",
-            snippetType="autosnippet",
-        },
-        fmta(
-            "$<>$",
-            { d(1, get_visual) }
-        )
-    ),
-    -- Insert subscript 
-    s(
-        {
-            trig="sb",
-            dscr="Expands 'sb' into a subscript",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "_{<>}",
-            { i(1) }
-        )
-    ),
-    -- Insert superscript 
-    s(
-        {
-            trig="sp",
-            dscr="Expands 'sp' into a superscript",
-            trigEngine="vim",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "^{<>}",
-            { i(1) }
-        )
-    ),
-    -- Insert Sobolev space
-    s(
-        {
-            trig="sob",
-            dsce="Expands 'sob' into a Sobolev space",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "W^{<>}(<>;<>)",
-            { i(1), i(2), i(3) }
-        )
-    ),
-    -- Insert fraction
-    s(
-        {
-            trig="ff",
-            dscr="Expands 'ff' into a frac command",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\frac{<>}{<>}",
-            { i(1), i(2) }
-        )
-    ),
-    -- Insert one half
-    s(
-        {
-            trig="um",
-            dscr="Expands 'um' into a one half fraction",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\frac{1}{2}",
-            {}
-        )
-    ),
-    -- Insert square root
-    s(
-        {
-            trig="sqr",
-            dscr="Expands 'sqr' into a square root",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\sqrt{<>}",
-            { i(1) }
-        )
-    ),
-    -- Insert real number
-    s(
-        {
-            trig="rr",
-            dscr="Expands 'rr' into a blackboard R",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\R",
-            {}
-        )
-    ),
-    -- Insert natural number
-    s(
-        {
-            trig="nn",
-            dscr="Expands 'nn' into a blackboard N",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\N",
-            {}
-        )
-    ),
-    -- Insert relative number
-    s(
-        {
-            trig="zz",
-            dscr="Expands 'zz' into a blackboard Z",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\Z",
-            {}
-        )
-    ),
-    -- Insert cosine
-    s(
-        {
-            trig="cos",
-            dscr="Expands 'cos' into a cosine function",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\cos<>",
-            { i(1) }
-        )
-    ),
-    -- Insert sine
-    s(
-        {
-            trig="sin",
-            dscr="Expands 'sin' into a sine function",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\sin<>",
-            { i(1) }
-        )
-    ),
-    -- Insert differential
-    s(
-        {
-            trig="dd",
-            dscr="Expands 'dd' into a differential",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\dd ",
-            {}
-        )
-    ),
-    -- Insert superscript for number fields
-    s(
-        {
-            trig="\\([RNZ])([0-9Nnmdk+])",
-            dscr="Automatically add exponent to number fields",
-            wordTrig=false,
-            regTrig=true,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\<>^{<>}",
-            { f( function(_, snip) return snip.captures[1] end ), 
-            f( function(_, snip) return snip.captures[2] end ) }
-        )
-    ),
-    -- Insert double superscript for matrices
-    s(
-        {
-            trig="\\([RZN])^{([0-9Nnmdk])}([0-9Nnmdk])",
-            dscr="Automatically add second exponent to number field",
-            wordTrig=false,
-            regTrig=true,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\<>^{<> \\times <>}",
-            { f( function(_, snip) return snip.captures[1] end ),
-            f( function(_, snip) return snip.captures[2] end ), 
-            f( function(_, snip) return snip.captures[3] end )}
-        )
-    ),
-    -- Insert integral 
-    s(
-        {
-            trig="\\int",
-            dscr="Expands 'int' into an integral",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\int_{<>}",
-            { i(1) }
-        )
-    ),
-    -- Insert line integral 
-    s(
-        {
-            trig="rint",
-            dscr="Expands 'rint' into an integral",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\int_{<>}^{<>}",
-            { i(1), i(2) }
-        )
-    ),
-    -- Insert set
-    s(
-        {
-            trig="set",
-            dscr="Expands 'set' into a set of curly parentheses",
-            wordTrig=true,
-            regTrig=true,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\{ <> \\}",
-            { i(1) }
-        )
-    ),
-    -- Insert norm 
-    s(
-        {
-            trig="nrm",
-            dscr="Expands 'nrm' into a norm",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-        },
-        fmta(
-            "\\lVert <> \\rVert_{<>}",
-            { i(1), i(2) }
-        )
-    ),
-    -- Insert sum
-    s(
-        {
-            trig="sum",
-            dscr="Expands 'sum' into a sum",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-            priority=1001
-        },
-        fmta(
-            "\\sum_{<>}",
-            { i(1) }
-        )
-    ),
-    -- Insert full sum
-    s(
-        {
-            trig="fsum",
-            dscr="Expands 'fsum' into a full sum with superscript",
-            wordTrig=false,
-            snippetType="autosnippet",
-            condition=in_mathzone,
-            priority=1002
-        },
-        fmta(
-            "\\sum_{<>}^{<>}",
-            { i(1), i(2) }
-        )
-    ),
+local snippets = {
+  -- Inline math (text mode)
+  auto("mm", fmta("$<>$", { h.sel(1) }), { condition = h.text, wordTrig = true }),
+
+  -- Sub- and superscripts
+  auto("sb", fmta("_{<>}", { i(1) })),
+  auto("sp", fmta("^{<>}", { i(1) })),
+
+  -- Fractions and roots
+  auto("ff", fmta("\\frac{<>}{<>}", { h.sel(1), i(2) })),
+  auto("um", t("\\frac{1}{2}")),
+  auto("sqr", fmta("\\sqrt{<>}", { h.sel(1) })),
+
+  -- Sets, norms and absolute values
+  -- ("set " ends in a space because "set" is a prefix of "setminus")
+  auto("set ", fmta("\\{ <> \\}", { h.sel(1) }), { wordTrig = true }),
+  auto("nrm", fmta("\\lVert <> \\rVert_{<>}", { h.sel(1), i(2) })),
+  auto("abs", fmta("\\lvert <> \\rvert", { h.sel(1) })),
+
+  -- Function spaces
+  auto("sob", fmta("W^{<>}(<>;<>)", { i(1), i(2), i(3) })),
+
+  -- Sums and integrals: name = lower limit, f + name = both limits
+  auto("sum", fmta("\\sum_{<>}", { i(1) })),
+  auto("fsum", fmta("\\sum_{<>}^{<>}", { i(1), i(2) })),
+  auto("int", fmta("\\int_{<>}", { i(1) })),
+  auto("fint", fmta("\\int_{<>}^{<>}", { i(1), i(2) })),
+
+  -- Exponents for number sets: \R 2 -> \R^{2}, then \R^{n}m -> \R^{n \times m}
+  auto(
+    "\\([RNZ]) ?([%dNnmdk+])",
+    fmta("\\<>^{<>}", { h.cap(1), h.cap(2) }),
+    { trigEngine = "pattern", priority = 1100, dscr = "Exponent for a number set" }
+  ),
+  auto(
+    "\\([RNZ])^{([%dNnmdk])}([%dNnmdk])",
+    fmta("\\<>^{<> \\times <>}", { h.cap(1), h.cap(2), h.cap(3) }),
+    { trigEngine = "pattern", priority = 1100, dscr = "Second exponent for a number set" }
+  ),
 }
+
+-- Number sets (not expanded inside indices such as a_{nn})
+vim.list_extend(snippets, h.symbols(
+  { rr = "R", nn = "N", zz = "Z" },
+  { condition = h.math * h.not_in_index }
+))
+
+-- Functions and differentials
+vim.list_extend(snippets, h.symbols({
+  cos = "cos",
+  sin = "sin",
+  dd = "dd",
+}))
+
+return snippets
