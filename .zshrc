@@ -13,11 +13,22 @@ compinit
 
 # CUSTOM CONFIGURATION
 
+## PATH
+export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux-x86_64/bin:/usr/local/texlive/2024/bin/x86_64-linux"
+export MANPATH="$MANPATH:/usr/local/texlive/2024/texmf-dist/doc/man"
+export INFOPATH="$INFOPATH:/usr/local/texlive/2024/texmf-dist/doc/info"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 ## Keybinding for vi
 bindkey -M viins 'jj' vi-cmd-mode
 
 ## Aliases
-eval $(thefuck --alias)
+command -v thefuck >/dev/null && eval $(thefuck --alias)
 
 ## Environment variables
+export EDITOR=nvim
 export GIT_EDITOR=nvim
+
+## Shell tools
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
