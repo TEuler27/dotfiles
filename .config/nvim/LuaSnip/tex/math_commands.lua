@@ -545,7 +545,7 @@ return {
             {}
         )
     ),
-    -- Insert sst command
+    -- Insert subset command
     s(
         {
             trig="subset",
@@ -598,6 +598,20 @@ return {
         },
         fmta(
             "\\overline{<>}",
+            { d(1, get_visual) }
+        )
+    ),
+    -- Insert underline command
+    s(
+        {
+            trig="under",
+            dscr="Expands 'under' into a underline command",
+            wordTrig=false,
+            snippetType="autosnippet",
+            condition=in_mathzone,
+        },
+        fmta(
+            "\\underline{<>}",
             { d(1, get_visual) }
         )
     ),

@@ -122,6 +122,34 @@ return {
             {}
         )
     ),
+    -- Insert natural number
+    s(
+        {
+            trig="nn",
+            dscr="Expands 'nn' into a blackboard N",
+            wordTrig=false,
+            snippetType="autosnippet",
+            condition=in_mathzone,
+        },
+        fmta(
+            "\\N",
+            {}
+        )
+    ),
+    -- Insert relative number
+    s(
+        {
+            trig="zz",
+            dscr="Expands 'zz' into a blackboard Z",
+            wordTrig=false,
+            snippetType="autosnippet",
+            condition=in_mathzone,
+        },
+        fmta(
+            "\\Z",
+            {}
+        )
+    ),
     -- Insert cosine
     s(
         {
@@ -160,38 +188,41 @@ return {
             condition=in_mathzone,
         },
         fmta(
-            "\\, d",
+            "\\dd ",
             {}
         )
     ),
-    -- Insert superscript for reals
+    -- Insert superscript for number fields
     s(
         {
-            trig="\\R([0-9Nnmdk])",
-            dscr="Automatically add exponent to reals",
+            trig="\\([RNZ])([0-9Nnmdk+])",
+            dscr="Automatically add exponent to number fields",
             wordTrig=false,
             regTrig=true,
             snippetType="autosnippet",
             condition=in_mathzone,
         },
         fmta(
-            "\\R^{<>}",
-            { f( function(_, snip) return snip.captures[1] end ) }
+            "\\<>^{<>}",
+            { f( function(_, snip) return snip.captures[1] end ), 
+            f( function(_, snip) return snip.captures[2] end ) }
         )
     ),
-    -- Insert double superscript for real matrices
+    -- Insert double superscript for matrices
     s(
         {
-            trig="\\R^{([0-9Nnmdk])}([0-9Nnmdk])",
-            dscr="Automatically add second exponent to reals",
+            trig="\\([RZN])^{([0-9Nnmdk])}([0-9Nnmdk])",
+            dscr="Automatically add second exponent to number field",
             wordTrig=false,
             regTrig=true,
             snippetType="autosnippet",
             condition=in_mathzone,
         },
         fmta(
-            "\\R^{<> \\times <>}",
-            { f( function(_, snip) return snip.captures[1] end ), f( function(_, snip) return snip.captures[2] end ) }
+            "\\<>^{<> \\times <>}",
+            { f( function(_, snip) return snip.captures[1] end ),
+            f( function(_, snip) return snip.captures[2] end ), 
+            f( function(_, snip) return snip.captures[3] end )}
         )
     ),
     -- Insert integral 
@@ -227,7 +258,7 @@ return {
         {
             trig="set",
             dscr="Expands 'set' into a set of curly parentheses",
-            wordTrig=false,
+            wordTrig=true,
             regTrig=true,
             snippetType="autosnippet",
             condition=in_mathzone,

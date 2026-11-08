@@ -13,6 +13,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
 Plug('nvim-mini/mini.icons')
+Plug('nvim-mini/mini.pick')
 Plug('nvim-mini/mini-git')
 Plug('nvim-treesitter/nvim-treesitter')
 Plug('OXY2DEV/markview.nvim')
@@ -22,6 +23,8 @@ Plug('L3MON4D3/LuaSnip', {['do'] = 'make install_jsregexp'})
 Plug("ingur/floatty.nvim")
 Plug("nvim-lualine/lualine.nvim")
 Plug('LuxVim/nvim-luxmotion')
+Plug('nvim-lua/plenary.nvim')
+Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
 
 vim.call('plug#end')
 
@@ -38,8 +41,12 @@ local term = require("floatty").setup()
 vim.keymap.set('n', '<leader>t', function() term.toggle() end)
 vim.keymap.set('t', '<leader>q', function() term.toggle() end)
 
+require('mini.pick').setup()
+
 require('markview').setup({
     preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
         enable = true,
         enable_hybrid_mode = true,
         modes = { "v", "V", "R", "i", "n", "no", "c" },
@@ -47,8 +54,9 @@ require('markview').setup({
     }
 })
 require('nvim-treesitter.config').setup({
-    ignore_install = { "latex" }
+    ignore_install = { "latex" },
 })
+require('nvim-treesitter').install({ "yaml" })
 vim.cmd("colorscheme nordfox")
 
 -- Luasnip
@@ -99,3 +107,20 @@ vim.g.vimtex_delim_toggle_mod_list = {
     {"\\Big", "\\Big"},
     {"\\Bigg", "\\Bigg"},
 }
+
+-- Blink
+
+require('blink.cmp').setup({ 
+    keymap = { preset = 'none',
+        ['<CR>'] = { 'select_and_accept', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+    },
+    enabled = function()
+        local disabled_filetypes = { "tex" }
+        if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+          return false
+        end
+        return true
+    end
+})

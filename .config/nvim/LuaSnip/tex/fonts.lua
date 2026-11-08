@@ -25,6 +25,20 @@ return {
             { d(1, get_visual) }
         )
     ),
+    -- Insert mathfrak math
+    s(
+        {
+            trig="frak",
+            dscr="Expands 'frak' into a mathfrak command",
+            wordTrig=false,
+            snippetType="autosnippet",
+            condition=in_mathzone,
+        },
+        fmta(
+            "\\mathfrak{<>}",
+            { d(1, get_visual) }
+        )
+    ),
     -- Insert blackboard math
     s(
         {
